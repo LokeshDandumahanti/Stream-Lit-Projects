@@ -1,6 +1,6 @@
 import streamlit as st
 import requests
-import pyperclip
+import clipboard
 
 def shorten_url(url):
     try:
@@ -13,7 +13,7 @@ def shorten_url(url):
         return "Error: Request timed out"
 
 def copying(shortened_url):
-    pyperclip.copy(shortened_url)
+    clipboard.copy(shortened_url)
 
 # Streamlit UI
 st.markdown("<h1 style='text-align: center;'>URL SHORTENER</h1>", unsafe_allow_html=True)
