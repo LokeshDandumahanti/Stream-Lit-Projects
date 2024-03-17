@@ -59,13 +59,15 @@ def create_form():
         st.success('Data submitted successfully!')
 
 # Function to store data in Excel
+# Function to store data in Excel
 def store_data(data):
     try:
         existing_df = pd.read_excel('data.xlsx')
         updated_df = pd.concat([existing_df, pd.DataFrame(data, index=[0])], ignore_index=True)
         updated_df.to_excel('data.xlsx', index=False)
     except FileNotFoundError:
-        pd.DataFrame(data, index=[0]).to_excel('data.xlsx', index=False)
+        pd.DataFrame([data]).to_excel('data.xlsx', index=False)
+
 
 # Main function
 def main():
