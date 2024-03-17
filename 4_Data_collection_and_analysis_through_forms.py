@@ -1,6 +1,13 @@
+import subprocess
+
+# Install matplotlib
+subprocess.check_call(['pip', 'install', 'matplotlib'])
+
+# Now you can import matplotlib
+import matplotlib.pyplot as plt
+
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
 
 # Function to create a form
 def create_form():
