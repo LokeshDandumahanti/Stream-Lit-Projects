@@ -1,13 +1,6 @@
-import subprocess
-
-# Install matplotlib
-subprocess.check_call(['pip', 'install', 'matplotlib'])
-
-# Now you can import matplotlib
-import matplotlib.pyplot as plt
-
 import streamlit as st
 import pandas as pd
+import seaborn as sns
 
 # Function to create a form
 def create_form():
@@ -83,11 +76,14 @@ def show_team_support_chart():
     try:
         data = pd.read_excel('data.xlsx')
         team_counts = data['Favorite IPL Team'].value_counts()
-        fig, ax = plt.subplots()
-        ax.pie(team_counts, labels=team_counts.index, autopct='%1.1f%%')
-        ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle
-        st.subheader('Percentage of People Supporting Each IPL Team')
-        st.pyplot(fig)
+        plt.figure(figsize=(8, 6))
+        sns.set_palette('pastel')
+        sns.barplot(x=team_counts.index, y=team_counts.values)
+        plt.xticks(rotation=45)
+        plt.xlabel('IPL Team')
+        plt.ylabel('Number of Supporters')
+        plt.title('Number of Supporters for Each IPL Team')
+        st.pyplot()
     except FileNotFoundError:
         st.warning('No data submitted yet.')
 
