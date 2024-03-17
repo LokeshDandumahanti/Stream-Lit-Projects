@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import seaborn as sns
+
 
 # Function to create a form
 def create_form():
@@ -71,21 +71,7 @@ def store_data(data):
     except FileNotFoundError:
         pd.DataFrame(data, index=[0]).to_excel('data.xlsx', index=False)
 
-# Function to show pie chart for IPL team support
-def show_team_support_chart():
-    try:
-        data = pd.read_excel('data.xlsx')
-        team_counts = data['Favorite IPL Team'].value_counts()
-        plt.figure(figsize=(8, 6))
-        sns.set_palette('pastel')
-        sns.barplot(x=team_counts.index, y=team_counts.values)
-        plt.xticks(rotation=45)
-        plt.xlabel('IPL Team')
-        plt.ylabel('Number of Supporters')
-        plt.title('Number of Supporters for Each IPL Team')
-        st.pyplot()
-    except FileNotFoundError:
-        st.warning('No data submitted yet.')
+
 
 # Main function
 def main():
