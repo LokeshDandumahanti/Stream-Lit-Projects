@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-
 # Function to create a form
 def create_form():
     st.title('Data Entry Form')
@@ -57,33 +56,4 @@ def create_form():
         }
         # Store data in Excel
         store_data(data)
-        st.success('Data submitted successfully!')
-
-        # Display pie chart for IPL team support
-        show_team_support_chart()
-
-# Function to store data in Excel
-def store_data(data):
-    try:
-        existing_df = pd.read_excel('data.xlsx')
-        updated_df = pd.concat([existing_df, pd.DataFrame(data, index=[0])], ignore_index=True)
-        updated_df.to_excel('data.xlsx', index=False)
-    except FileNotFoundError:
-        pd.DataFrame(data, index=[0]).to_excel('data.xlsx', index=False)
-
-
-
-# Main function
-def main():
-    create_form()
-
-    # Display stored data
-    try:
-        stored_data = pd.read_excel('data.xlsx')
-        st.title('Stored Data')
-        st.write(stored_data)
-    except FileNotFoundError:
-        st.warning('No data submitted yet.')
-
-if __name__ == "__main__":
-    main()
+        st.success('Data submitte
